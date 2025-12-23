@@ -1,0 +1,31 @@
+version: '3'
+
+tasks:
+  help:
+    desc: print this help message
+    cmds:
+    - go-task --list-all
+    silent: true
+
+  confirm:
+    desc: confirmation prompt
+    cmds:
+    - |
+      echo -n 'Are you sure? [y/N] ' && read ans && [ ${ans:-N} = y ]
+    silent: true
+    internal: true
+
+  run:
+    desc: run the cmd/YABS application
+    cmds:
+    - go run ./cmd/YABS
+
+  tidy:
+    desc: format all .go files, and tidy and vendor module dependencies
+    cmds:
+    - echo 'Formatting .go files...'
+    - go fmt ./...
+    - echo 'Tidying module dependencies...'
+    - go mod tidy
+    - echo 'Verifying dependencies...'
+    - go mod verify
