@@ -10,3 +10,8 @@ CREATE TABLE users (
 
 CREATE INDEX idx_users_username on users(username);
 -- +goose StatementEnd
+
+-- +goose Down
+-- +goose StatementBegin
+DROP TABLE users;
+-- +goose StatementEnd

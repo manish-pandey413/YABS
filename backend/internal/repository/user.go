@@ -13,6 +13,12 @@ type UserRepository struct {
 	server *server.Server
 }
 
+func NewUserRepository(s *server.Server) *UserRepository {
+	return &UserRepository{
+		server: s,
+	}
+}
+
 func (ur *UserRepository) AddUser(ctx context.Context, username string, email string) (*model.User, error) {
 	stmt := `
 		INSERT INTO 
@@ -27,7 +33,7 @@ func (ur *UserRepository) AddUser(ctx context.Context, username string, email st
 				@email,
 				@password
 			)
-			RETURNING username
+			RETURNING *
 	`
 
 	rows, err := ur.server.DB.Pool.Query(ctx, stmt, pgx.NamedArgs{
@@ -37,7 +43,7 @@ func (ur *UserRepository) AddUser(ctx context.Context, username string, email st
 	})
 
 	if err != nil {
-		return nil, fmt.Errorf("Failed to add user with username %w: %w", username, err)
+		return nil, fmt.Errorf("Failed to add user with username %s: %w", username, err)
 	}
 
 	userItem, err := pgx.CollectOneRow(rows, pgx.RowToStructByName[model.User])

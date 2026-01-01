@@ -1,11 +1,13 @@
 package config
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
 
 	"github.com/go-playground/validator/v10"
+	_ "github.com/joho/godotenv/autoload"
 	"github.com/knadh/koanf/providers/env"
 	"github.com/knadh/koanf/v2"
 )
@@ -14,6 +16,10 @@ type Config struct {
 	Server   ServerConfig   `koanf:"server" validate:"required"`
 	Database DatabaseConfig `koanf:"database" validate:"required"`
 	Auth     AuthConfig     `koanf:"auth" validate:"required"`
+}
+
+type Primary struct {
+	Env string `koanf:"env" validate:"required"`
 }
 
 type ServerConfig struct {
@@ -155,7 +161,7 @@ func LoadConfig() (*Config, error) {
 	if err != nil {
 		log.Fatal("config validation failed")
 	} else {
-		log.Println("config validation passed")
+		fmt.Println("config validation passed")
 	}
 
 	return mainConfig, nil
