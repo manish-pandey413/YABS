@@ -1,26 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 #root {
-  max-width: 1280px;
-  margin: 0 0;
-  padding: 0rem;
-}
-
-[theme='light'] {
-  color-scheme : light;
   --bg-color: #F2F2F2;
   --text-color:#000;
-  button {
-    background-color: rgba(230, 230, 230, 1);
-  }
-}
-[theme='dark']{
-  color-scheme: dark;
-  --bg-color:#131313;
-  --text-color: rgba(255, 255, 255, 0.8) ;
+  margin: 0 0;
+  padding: 0rem;
+  background-color: var(--bg-color);
 }
 
 body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+
+button{
+  background-color: rgba(210, 210, 210, 1);
+  font-family: Saira;
+}
+
+.modalBox {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
@@ -36,3 +35,8 @@ body {
   top: 0;
   z-index: 1000;
 }
+
+button:hover {
+  border-color: #646cff;
+}
+
