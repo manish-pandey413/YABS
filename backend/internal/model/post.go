@@ -1,8 +1,8 @@
 package model
 
 type Post struct {
-	ID       int      `json:"id"`
-	Owner_ID int      `json:"owner_id" validator:"required"`
-	Content  string   `json:"content" validator:"required"`
-	Comments []string `json:"comments"`
+	ID             int      `json:"id"`
+	Owner_Username string   `json:"owner_username" validator:"required"`
+	Content        string   `json:"content" validator:"required"`
+	Comments       []string `json:"comments"`
 }

@@ -8,5 +8,6 @@ import (
 func registerUserRoutes(r *echo.Group, h *handler.UserHandler) {
 	users := r.Group("/users")
 
-	users.GET("", h.AddUser)
+	users.POST("/signup", h.Signup)
+	users.POST("/login", h.Login)
 }

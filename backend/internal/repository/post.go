@@ -19,17 +19,17 @@ func NewPostRepository(s *server.Server) *PostRepository {
 	}
 }
 
-func (p *PostRepository) NewPost(ctx context.Context, owner_id int, content string) (*model.Post, error) {
+func (p *PostRepository) NewPost(ctx context.Context, owner_username string, content string) (*model.Post, error) {
 	stmt := `
 		INSERT INTO 
 			posts (
-				owner_id,
+				owner_username,
 				content,
 				comments
 			)
 			VALUES
 			(
-				@owner_id,
+				@owner_username,
 				@content,
 				ARRAY[]::TEXT[]
 			)
@@ -38,8 +38,8 @@ func (p *PostRepository) NewPost(ctx context.Context, owner_id int, content stri
 	`
 
 	rows, err := p.server.DB.Pool.Query(ctx, stmt, pgx.NamedArgs{
-		"owner_id": owner_id,
-		"content":  content,
+		"owner_username": owner_username,
+		"content":        content,
 	})
 
 	if err != nil {

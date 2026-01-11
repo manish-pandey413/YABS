@@ -21,8 +21,8 @@ func NewPostService(s *server.Server, postRepo *repository.PostRepository) *Post
 	}
 }
 
-func (p *PostService) AddPost(ctx echo.Context, owner_id int, content string) (*model.Post, error) {
-	postItem, err := p.postRepo.NewPost(ctx.Request().Context(), owner_id, content)
+func (p *PostService) AddPost(ctx echo.Context, owner_username string, content string) (*model.Post, error) {
+	postItem, err := p.postRepo.NewPost(ctx.Request().Context(), owner_username, content)
 	if err != nil {
 		return nil, fmt.Errorf("Couldn't add post, %w", err)
 	}

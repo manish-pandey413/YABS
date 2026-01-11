@@ -2,13 +2,11 @@
 -- +goose StatementBegin
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY NOT NULL,
-  owner_id INT NOT NULL,
+  owner_username TEXT NOT NULL,
   content TEXT NOT NULL,
-  FOREIGN KEY(owner_id) REFERENCES users(user_id)
+  comments TEXT[],
+  FOREIGN KEY(owner_username) REFERENCES users(username)
 );
-
-ALTER TABLE posts
-ADD COLUMN comments TEXT[]
 -- +goose StatementEnd
 
 -- +goose Down
