@@ -60,7 +60,7 @@ export default function SignupModal() {
           variant="filled"
           type={showPassword ? "text" : "password"}
           label="Password"
-          inputRef={usernameRef} />
+          inputRef={passwordRef} />
       </div>
 
       <div className="m-2">
