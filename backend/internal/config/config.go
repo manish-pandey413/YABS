@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"log"
 	"strings"
 
@@ -66,9 +65,9 @@ func LoadConfig() (*Config, error) {
 
 	err = validate.Struct(mainConfig)
 	if err != nil {
-		log.Fatal("config validation failed")
+		log.Fatal("Config validation failed")
 	} else {
-		fmt.Println("config validation passed")
+		log.Println("Config validation passed")
 	}
 
 	return mainConfig, nil

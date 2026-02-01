@@ -52,7 +52,7 @@ func New(cfg *config.Config) (*Database, error) {
 		return nil, fmt.Errorf("Failed to ping database: %w", err)
 	}
 
-	log.Println("Connected to database")
+	log.Println("Connected to database...")
 
 	return database, nil
 }
